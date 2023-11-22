@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:32 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/18 23:46:06 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:49:47 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_format
 }				t_format;
 
 int		ft_printf(char const *format, ...);
-char	*ft_xtoa(size_t n);
-char	*ft_Xtoa(size_t n);
+char	*ft_xtoa(ssize_t n);
+char	*ft_Xtoa(ssize_t n);
 char	*ft_utoa(unsigned int n);
 size_t	ft_numlenx(ssize_t n);
 size_t	ft_numlend(ssize_t n);
