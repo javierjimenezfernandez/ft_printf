@@ -25,15 +25,13 @@ typedef struct s_format
 	int				d;
 	int				i;
 	unsigned int	u;
-	int				x;
-	int				X;
+	unsigned int	x;
+	unsigned int	X;
 }				t_format;
 
 int		ft_printf(char const *format, ...);
-char	*ft_xtoa(ssize_t n);
-char	*ft_Xtoa(ssize_t n);
-char	*ft_utoa(unsigned int n);
-size_t	ft_numlenx(ssize_t n);
-size_t	ft_numlend(ssize_t n);
+void	ft_str_toupper(char *str);
+size_t	ft_numlen_base(long n, unsigned int base_len);
+char	*ft_ntoa_base(long n, unsigned int base_len);
 
 #endif

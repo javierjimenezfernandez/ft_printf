@@ -17,6 +17,7 @@ int	main(void)
 {
 	int				len1;
 	int				len2;
+	int				i1;
 	unsigned int	u1;
 	int				hexa;
 	char			s[] = "Hola";
@@ -38,13 +39,25 @@ int	main(void)
 	ft_printf("return ft_printf = %d\n", len1);
 	ft_printf("return    printf = %d\n", len2);
 
-	u1 = 3147483647;
-	len1 = ft_printf("Número unsigned int = \"%u\"\n", u1);
-	len2 = printf("Número unsigned int = \"%u\"\n", u1);
+	i1 = -8436576;
+	len1 = ft_printf("Número decimal = \"%d\"\n", i1);
+	len2 = printf("Número decimal = \"%d\"\n", i1);
 	ft_printf("return ft_printf = %d\n", len1);
 	ft_printf("return    printf = %d\n", len2);
 
-	hexa = 215437953;
+	i1 = -5464;
+	len1 = ft_printf("Número entero = \"%i\"\n", i1);
+	len2 = printf("Número entero = \"%i\"\n", i1);
+	ft_printf("return ft_printf = %d\n", len1);
+	ft_printf("return    printf = %d\n", len2);
+
+	u1 = 3147483647;
+	len1 = ft_printf("Número decimal sin signo = \"%u\"\n", u1);
+	len2 = printf("Número decimal sin signo = \"%u\"\n", u1);
+	ft_printf("return ft_printf = %d\n", len1);
+	ft_printf("return    printf = %d\n", len2);
+
+	hexa = -437353553;
 	len1 = ft_printf("Número hexadecimal = \"%x\"\n", hexa);
 	len2 = printf("Número hexadecimal = \"%x\"\n", hexa);
 	ft_printf("return ft_printf = %d\n", len1);

@@ -50,7 +50,7 @@ int	ft_printf(char const *format, ...)
 			else if (*format == 'p')
 			{
 				data_type.p = va_arg(ap, void *);
-				to_write = ft_xtoa((ssize_t)data_type.p);
+				to_write = ft_ntoa_base((long)data_type.p, 16);
 				write(1, "0x", 2);
 				len += 2;
 				write(1, to_write, ft_strlen(to_write));
@@ -61,7 +61,7 @@ int	ft_printf(char const *format, ...)
 			else if (*format == 'd' || *format == 'i')
 			{
 				data_type.d = va_arg(ap, int);
-				to_write = ft_itoa(data_type.d);
+				to_write = ft_ntoa_base(data_type.d, 10);
 				write(1, to_write, ft_strlen(to_write));
 				len += ft_strlen(to_write);
 				free(to_write);
@@ -69,8 +69,8 @@ int	ft_printf(char const *format, ...)
 			}
 			else if (*format == 'u')
 			{
-				data_type.d = va_arg(ap, unsigned int);
-				to_write = ft_utoa(data_type.d);
+				data_type.u = va_arg(ap, unsigned int);
+				to_write = ft_ntoa_base(data_type.u, 10);
 				write(1, to_write, ft_strlen(to_write));
 				len += ft_strlen(to_write);
 				free(to_write);
@@ -79,8 +79,8 @@ int	ft_printf(char const *format, ...)
 
 			else if (*format == 'x')
 			{
-				data_type.x = va_arg(ap, int);
-				to_write = ft_xtoa((ssize_t)data_type.x);
+				data_type.x = va_arg(ap, unsigned int);
+				to_write = ft_ntoa_base(data_type.x, 16);
 				write(1, to_write, ft_strlen(to_write));
 				len += ft_strlen(to_write);
 				free(to_write);
@@ -88,8 +88,9 @@ int	ft_printf(char const *format, ...)
 			}
 			else if (*format == 'X')
 			{
-				data_type.X = va_arg(ap, int);
-				to_write = ft_Xtoa((ssize_t)data_type.X);
+				data_type.X = va_arg(ap, unsigned int);
+				to_write = ft_ntoa_base(data_type.X, 16);
+				ft_str_toupper(to_write);
 				write(1, to_write, ft_strlen(to_write));
 				len += ft_strlen(to_write);
 				free(to_write);
