@@ -66,3 +66,22 @@ char	*ft_ntoa_base(long n, unsigned int base_len)
 	}
 	return (num);
 }
+
+size_t	ft_putnbr_base(long n, unsigned int base_len, char const **format, t_format data_type, unsigned int base_len)
+{
+	size_t			len;
+	char			*to_write;
+
+	len = 0;
+	to_write = ft_ntoa_base((long)data_type.p, base_len);
+	if (**format == 'p')
+	{
+		write(1, "0x", 2);
+		len += 2;
+	}
+	ft_putstr_fd(to_write, 1);
+	len += ft_strlen(to_write);
+	free(to_write);
+	(*format)++;
+	return (len);
+}
