@@ -6,29 +6,88 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:39:04 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/24 18:51:33 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/08 01:46:13 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/ft_printf.h"
 
-int	ft_isnumeric(char format)
+size_t	ft_numlen_base(long long n, unsigned int base_len)
 {
-	if (format == 'p' || format == 'd' || format == 'i' || \
-		format == 'u' || format == 'x' || format == 'X')
-		return (1);
-	else
-		return (0);
+	size_t	len;
+
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n)
+	{
+		n /= base_len;
+		len++;
+	}
+	return (len);
 }
 
-unsigned int	ft_baselen(char format)
+char	*ft_ntoa_base(long long n, unsigned int base_len)
 {
-	unsigned int	base_len;
+	char	*num;
+	char	*base;
+	size_t	num_len;
+	int		neg_flag;
 
-	base_len = 10;
-	if (format == 'p' || format == 'x' || format == 'X')
-		base_len = 16;
-	return (base_len);
+	base = "0123456789abcdefghijklmnopqrstuvwxyz";
+	neg_flag = is_negative(n);
+	num_len = ft_numlen_base(n, base_len);
+	num = (char *)ft_calloc((num_len + 1), sizeof (char));
+	if (!num)
+		return (NULL);
+	while (num_len--)
+	{
+		if (neg_flag)
+		{
+			if (num_len == 0)
+				num[num_len] = '-';
+			else
+				num[num_len] = base[-n % base_len];
+		}
+		else
+			num[num_len] = base[n % base_len];
+		n /= base_len;
+	}
+	return (num);
+}
+
+size_t	ft_numlen_ubase(unsigned long long n, unsigned int base_len)
+{
+	size_t	len;
+
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n)
+	{
+		n /= base_len;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_utoa_base(unsigned long long n, unsigned int base_len)
+{
+	char	*num;
+	char	*base;
+	size_t	num_len;
+
+	base = "0123456789abcdefghijklmnopqrstuvwxyz";
+	num_len = ft_numlen_ubase(n, base_len);
+	num = (char *)ft_calloc((num_len + 1), sizeof (char));
+	if (!num)
+		return (NULL);
+	while (num_len--)
+	{
+		num[num_len] = base[n % base_len];
+		n /= base_len;
+	}
+	return (num);
 }
 
 size_t	ft_printf_putnbr(char format, char *to_write)
