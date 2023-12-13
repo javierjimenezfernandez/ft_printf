@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 14:40:29 by javjimen          #+#    #+#              #
-#    Updated: 2023/11/24 18:56:03 by javjimen         ###   ########.fr        #
+#    Updated: 2023/12/13 14:47:56 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,14 @@ LIBFT_PATH	= ./libft
 LIBFT		= $(LIBFT_PATH)/libft.a
 
 SRCS		= $(addprefix srcs/, ft_printf.c \
-								 ft_printf_utils.c\
-								 ft_printf_num.c)
+								 ft_printf_utils.c \
+								 ft_printf_char.c \
+								 ft_printf_string.c \
+								 ft_printf_pointer.c \
+								 ft_printf_int.c \
+								 ft_printf_uint.c \
+								 ft_printf_hexa.c \
+								 ft_printf_percent.c)
 
 OBJS 		= $(SRCS:%.c=%.o)
 
