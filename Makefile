@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: javjimen <javjimen@student.42.fr>          +#+  +:+       +#+         #
+#    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 14:40:29 by javjimen          #+#    #+#              #
-#    Updated: 2023/11/24 15:00:20 by javjimen         ###   ########.fr        #
+#    Updated: 2023/12/13 14:47:56 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,18 @@ LIBFT_PATH	= ./libft
 LIBFT		= $(LIBFT_PATH)/libft.a
 
 SRCS		= $(addprefix srcs/, ft_printf.c \
-								 ft_printf_utils.c)
+								 ft_printf_utils.c \
+								 ft_printf_char.c \
+								 ft_printf_string.c \
+								 ft_printf_pointer.c \
+								 ft_printf_int.c \
+								 ft_printf_uint.c \
+								 ft_printf_hexa.c \
+								 ft_printf_percent.c)
 
 OBJS 		= $(SRCS:%.c=%.o)
+
+INLCUDES	= $(addprefix includes/, ft_printf.h)
 
 CC			= cc
 RM			= rm -rf
@@ -31,7 +40,7 @@ ARFLAGS		= -r -c -s
 
 all: 		$(NAME)
 
-$(NAME): 	$(LIBFT) $(OBJS)
+$(NAME): 	$(LIBFT) $(OBJS) $(INLCUDES)
 			cp $(LIBFT) $(NAME)
 			$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
