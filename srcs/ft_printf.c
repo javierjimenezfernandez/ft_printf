@@ -6,38 +6,40 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:15 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/13 14:45:41 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:34:02 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/ft_printf.h"
 
-size_t	ft_select_format(char const format, va_list ap, size_t len)
+int	ft_select_format(char const format, va_list ap, int *len)
 {
 	if (format == 'c')
-		len += ft_printf_char(ap);
+		ft_printf_char(ap, len);
 	else if (format == 's')
-		len += ft_printf_string(ap);
+		ft_printf_string(ap, len);
 	else if (format == 'p')
-		len += ft_printf_pointer(format, ap);
+		ft_printf_pointer(format, ap, len);
 	else if (format == 'd' || format == 'i')
-		len += ft_printf_int(format, ap);
+		ft_printf_int(format, ap, len);
 	else if (format == 'u')
-		len += ft_printf_uint(format, ap);
+		ft_printf_uint(format, ap, len);
 	else if (format == 'x' || format == 'X')
-		len += ft_printf_hexa(format, ap);
+		ft_printf_hexa(format, ap, len);
 	else if (format == '%')
-		len += ft_printf_percent(format);
-	return (len);
+		ft_printf_percent(format, len);
+	else
+		*len = -1;
+	return (*len);
 }
 
 int	ft_printf(char const *format, ...)
 {
-	size_t	len;
+	int		len;
 	va_list	ap;
 
 	if (!format)
-		return (0);
+		return (-1);
 	len = 0;
 	va_start(ap, format);
 	while (*format)
@@ -45,12 +47,16 @@ int	ft_printf(char const *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			len = ft_select_format(*format, ap, len);
+			ft_select_format(*format, ap, &len);
+			if (len == -1)
+				return (len);
 		}
 		else
 		{
-			ft_putchar_fd(*format, 1);
-			len++;
+			if (write(1, format, 1) == -1)
+				return (-1);
+			else
+				len++;
 		}
 		format++;
 	}

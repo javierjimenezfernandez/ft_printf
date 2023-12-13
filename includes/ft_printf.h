@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:32 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/13 14:43:58 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:55:02 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "./../libft/libft.h"
 
 /* ft_printf.c */
-size_t			ft_select_format(char const format, va_list ap, size_t len);
+int				ft_select_format(char const format, va_list ap, int *len);
 int				ft_printf(char const *format, ...);
 
 /* ft_printf_utils.c */
@@ -29,23 +29,23 @@ char			*ft_utoa_base(unsigned long long n, unsigned int base_len);
 size_t			ft_printf_putnbr(char format, char *to_write);
 
 /* ft_printf_char.c */
-size_t			ft_printf_char(va_list ap);
+int				ft_printf_char(va_list ap, int *len);
 
 /* ft_printf_string.c */
-size_t			ft_printf_string(va_list ap);
+int				ft_printf_string(va_list ap, int *len);
 
 /* ft_printf_pointer.c */
-size_t			ft_printf_pointer(char const format, va_list ap);
+int				ft_printf_pointer(char const format, va_list ap, int *len);
 
 /* ft_printf_int.c */
-size_t			ft_printf_int(char const format, va_list ap);
+int				ft_printf_int(char const format, va_list ap, int *len);
 
 /* ft_printf_uint.c */
-size_t			ft_printf_uint(char const format, va_list ap);
+int				ft_printf_uint(char const format, va_list ap, int *len);
 
 /* ft_printf_hexa.c */
-size_t			ft_printf_hexa(char const format, va_list ap);
+int				ft_printf_hexa(char const format, va_list ap, int *len);
 
 /* ft_printf_percent.c */
-size_t			ft_printf_percent(char const format);
+int				ft_printf_percent(char const format, int *len);
 #endif

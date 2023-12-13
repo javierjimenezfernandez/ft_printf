@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:03 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/13 14:04:39 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:51:00 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,22 @@ size_t	ft_printf_putnbr(char format, char *to_write)
 	len = 0;
 	if (format == 'p')
 	{
-		ft_putstr_fd("0x", 1);
-		len += 2;
+		if (write(1, "0x", 2) == -1)
+			return (-1);
+		else
+			len += 2;
 	}
 	if (format == 'X')
 	{
 		ft_str_toupper(to_write);
 	}
-	ft_putstr_fd(to_write, 1);
-	len += ft_strlen(to_write);
-	free(to_write);
+	while (*to_write)
+	{
+		if (write(1, to_write, 1) == -1)
+			return (-1);
+		else
+			len++;
+		to_write++;
+	}
 	return (len);
 }

@@ -6,18 +6,17 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:00:36 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/13 14:43:52 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:43:42 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/ft_printf.h"
 
-size_t	ft_printf_percent(char const format)
+int	ft_printf_percent(char const format, int *len)
 {
-	size_t	len;
-
-	len = 0;
-	ft_putchar_fd(format, 1);
-	len++;
-	return (len);
+	if (write(1, &format, 1) == -1)
+		*len = -1;
+	else
+		(*len)++;
+	return (*len);
 }
