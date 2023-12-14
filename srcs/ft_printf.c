@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:15 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/13 19:34:02 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:28:32 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,31 @@ int	ft_select_format(char const format, va_list ap, int *len)
 	return (*len);
 }
 
+int	ft_printf_logic(char const *format, va_list ap, int *len)
+{
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			ft_select_format(*format, ap, len);
+			if (*len == -1)
+				break ;
+		}
+		else
+		{
+			if (write(1, format, 1) == -1)
+			{
+				(*len) = -1;
+				break ;
+			}
+			(*len)++;
+		}
+		format++;
+	}
+	return (*len);
+}
+
 int	ft_printf(char const *format, ...)
 {
 	int		len;
@@ -42,24 +67,7 @@ int	ft_printf(char const *format, ...)
 		return (-1);
 	len = 0;
 	va_start(ap, format);
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			format++;
-			ft_select_format(*format, ap, &len);
-			if (len == -1)
-				return (len);
-		}
-		else
-		{
-			if (write(1, format, 1) == -1)
-				return (-1);
-			else
-				len++;
-		}
-		format++;
-	}
+	ft_printf_logic(format, ap, &len);
 	va_end(ap);
 	return (len);
 }

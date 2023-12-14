@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:00:36 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/13 19:43:42 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:12:45 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_printf_percent(char const format, int *len)
 {
 	if (write(1, &format, 1) == -1)
-		*len = -1;
+		(*len) = -1;
 	else
 		(*len)++;
 	return (*len);

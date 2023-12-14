@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:55:37 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/13 19:43:30 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:12:10 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_printf_char(va_list ap, int *len)
 
 	c = va_arg(ap, int);
 	if (write(1, &c, 1) == -1)
-		*len = -1;
+		(*len) = -1;
 	else
 		(*len)++;
 	return (*len);
