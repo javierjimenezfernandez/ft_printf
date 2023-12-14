@@ -6,28 +6,36 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:56:58 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/13 14:28:46 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:58:51 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/ft_printf.h"
 
-size_t	ft_printf_string(va_list ap)
+int	ft_printf_string(va_list ap, int *len)
 {
-	size_t	len;
 	char	*s;
 
-	len = 0;
 	s = va_arg(ap, char *);
-	if (s)
+	if (!s)
 	{
-		ft_putstr_fd(s, 1);
-		len += ft_strlen(s);
+		if (write(1, "(null)", 6) == -1)
+		{
+			(*len) = -1;
+			return (*len);
+		}
+		(*len) += 6;
+		return (*len);
 	}
-	else
+	while (*s)
 	{
-		ft_putstr_fd("(null)", 1);
-		len += ft_strlen("(null)");
+		if (write(1, s, 1) == -1)
+		{
+			(*len) = -1;
+			return (*len);
+		}
+		(*len)++;
+		s++;
 	}
-	return (len);
+	return (*len);
 }

@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:03 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/13 14:04:39 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:11:52 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,30 @@ char	*ft_utoa_base(unsigned long long n, unsigned int base_len)
 	return (num);
 }
 
-size_t	ft_printf_putnbr(char format, char *to_write)
+int	ft_printf_putnbr(char format, char *to_write, int *len)
 {
-	size_t			len;
-
-	len = 0;
 	if (format == 'p')
 	{
-		ft_putstr_fd("0x", 1);
-		len += 2;
+		if (write(1, "0x", 2) == -1)
+		{
+			(*len) = -1;
+			return (*len);
+		}
+		(*len) += 2;
 	}
 	if (format == 'X')
 	{
 		ft_str_toupper(to_write);
 	}
-	ft_putstr_fd(to_write, 1);
-	len += ft_strlen(to_write);
-	free(to_write);
-	return (len);
+	while (*to_write)
+	{
+		if (write(1, to_write, 1) == -1)
+		{
+			(*len) = -1;
+			return (*len);
+		}
+		(*len)++;
+		to_write++;
+	}
+	return (*len);
 }
