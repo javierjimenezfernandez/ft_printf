@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:32:36 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/08 01:55:38 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:49:56 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,15 @@ int	main(void)
 	ft_printf("return ft_printf = %d\n", len1);
 	ft_printf("return    printf = %d\n", len2);
 
+	printf("\nTEST 16\n");
+	len1 = ft_printf("Produce un error ft_printf = \"%\n\"\n");
+	ft_printf("\n");
+	//len2 = printf("Produce un error    printf = \"%\n\"");
+	ft_printf("return ft_printf = %d\n", len1);
+	//ft_printf("return    printf = %d\n", len2);
+
+	ft_printf("\n");
+
+	system("leaks a.out");
 	return (0);
 }
