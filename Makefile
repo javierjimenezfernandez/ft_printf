@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 14:40:29 by javjimen          #+#    #+#              #
-#    Updated: 2023/12/13 14:47:56 by javjimen         ###   ########.fr        #
+#    Updated: 2023/12/21 14:01:07 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ $(LIBFT):
 
 clean:
 			make -C $(LIBFT_PATH) clean
-			$(RM) $(OBJS) $(BONUS_OBJS)
+			$(RM) $(OBJS)
 
 fclean: 	clean
 			make -C $(LIBFT_PATH) fclean
