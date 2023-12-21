@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:15 by javjimen          #+#    #+#             */
-/*   Updated: 2023/12/14 12:28:32 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/12/21 14:15:28 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_select_format(char const format, va_list ap, int *len)
 	else if (format == '%')
 		ft_printf_percent(format, len);
 	else
-		*len = -1;
+		(*len) = -1;
 	return (*len);
 }
 
@@ -41,7 +41,7 @@ int	ft_printf_logic(char const *format, va_list ap, int *len)
 		{
 			format++;
 			ft_select_format(*format, ap, len);
-			if (*len == -1)
+			if ((*len) == -1)
 				break ;
 		}
 		else
